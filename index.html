@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Notes Sharing Platform</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script defer src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.6.2/firebase-storage.js"></script>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-3">
+        <h1 class="animate__animated animate__fadeInDown">Student Notes Sharing Platform</h1>
+        <select id="branchSelector" class="form-control w-25 mx-auto mt-3" onchange="changeTheme()">
+            <option value="default">Select Branch</option>
+            <option value="cse">Computer Science</option>
+            <option value="ece">Electronics</option>
+            <option value="mech">Mechanical</option>
+        </select>
+    </header>
+    <main class="container mt-4">
+        <section id="uploadSection" class="mb-4">
+            <h2 class="text-center">Upload Your Notes</h2>
+            <form id="uploadForm" class="p-3 border rounded bg-light">
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea id="notes" name="notes" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pdf">Upload PDF:</label>
+                    <input type="file" id="pdf" name="pdf" class="form-control" accept="application/pdf">
+                </div>
+                <button type="submit" class="btn btn-success">Upload</button>
+            </form>
+        </section>
+        <section id="notesSection">
+            <h2 class="text-center">Shared Notes</h2>
+            <div class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <a class="nav-link active" id="pills-all-tab" data-toggle="pill" href="#pills-all" role="tab">All</a>
+                <a class="nav-link" id="pills-cse-tab" data-toggle="pill" href="#pills-cse" role="tab">Computer Science</a>
+                <a class="nav-link" id="pills-ece-tab" data-toggle="pill" href="#pills-ece" role="tab">Electronics</a>
+                <a class="nav-link" id="pills-mech-tab" data-toggle="pill" href="#pills-mech" role="tab">Mechanical</a>
+            </div>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-all" role="tabpanel">
+                    <div id="notesContainerAll" class="row"></div>
+                </div>
+                <div class="tab-pane fade" id="pills-cse" role="tabpanel">
+                    <div id="notesContainerCSE" class="row"></div>
+                </div>
+                <div class="tab-pane fade" id="pills-ece" role="tabpanel">
+                    <div id="notesContainerECE" class="row"></div>
+                </div>
+                <div class="tab-pane fade" id="pills-mech" role="tabpanel">
+                    <div id="notesContainerMech" class="row"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
